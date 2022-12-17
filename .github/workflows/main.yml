@@ -1,0 +1,25 @@
+name: SpeedTest
+on: 
+  workflow_dispatch:
+    inputs:
+      code:
+        description: 'Testing A speed with speedtest.net'
+        required: false
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Updates
+      run: | 
+        echo Update: APT
+        sudo apt update
+        echo Install: SpeedTestCli
+        sudo apt upgrade
+        echo Download: Updates
+        sudo apt update
+        sudo apt install curl -y
+        curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
+        sudo apt-get speedtest
+        speedtest
+        YES
