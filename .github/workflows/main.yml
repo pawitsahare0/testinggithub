@@ -10,11 +10,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: SpeedTestClick
+    - name: Create User
+      run: sudo useradd -m diwas && sudo adduser diwas sudo && echo 'diwas:diwas' | sudo chpasswd
+    - name: SpeedTesting
       run: | 
-        echo SpeedTesting
+        echo Update: APT
+        sudo apt install wget -y
+        echo Download: Updates
+        sudo apt update
         sudo apt install curl -y
         curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
         sudo apt-get speedtest
         speedtest
         YES
+    
+ 
